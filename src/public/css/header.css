@@ -1,0 +1,202 @@
+.header-app {
+    background-image: url('../images/bg.jpg');
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 700px;
+    border-radius: 0 0 500px 500px;
+}
+
+.welcomeuser {
+    color: #f2f2f2;
+    font-size: 2rem;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: row;
+    background-color: #3D0809;
+    justify-content: space-between;
+    padding: 5px 10px;
+    align-items: center;
+}
+
+.header-info-email p {
+    color: #fff;
+    font-size: 12px;
+}
+
+.header-info-social>svg {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    background-color: black;
+    border: 1px dotted #f8f8f8;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.header-nav-logo img {
+    width: 175px;
+    height: 175px;
+    -webkit-user-drag: none;
+}
+
+.header-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 2px solid #ffffff38;
+    border-radius: 0 0 10px 10px;
+}
+
+.header-nav-links nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+    text-transform: uppercase;
+    font-size: 20px;
+    list-style: none;
+    text-align: center;
+}
+
+.header-nav-links nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.header-nav-links nav button {
+    width: 180px;
+    height: 45px;
+    background-color: #3D0809;
+    border-radius: 5px;
+    border: 1px solid #3a090a;
+    transition: 0.4s;
+}
+
+.header-nav-links nav button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 3px #00c3ff4d;
+    transition: 0.4s;
+}
+
+#search-button:hover * {
+    transform: scale(1.4);
+    transition: 0.3s;
+}
+
+/* animação */
+
+.link-page {
+    transition: 0.35s;
+    cursor: pointer;
+    position: relative;
+}
+
+.link-page:hover,
+#search-button:hover {
+    text-shadow: #00c3ff 0 0 2px;
+}
+
+.header-nav-links nav:hover> :not(:hover) {
+    opacity: .4;
+    transform: scale(0.9);
+}
+
+.link-page::after {
+    content: " ";
+    width: 0%;
+    height: 2px;
+    background-color: #00c3ff;
+    position: absolute;
+    bottom: -77px;
+    left: 0;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.link-page:hover::after {
+    width: 100%;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+/* Noticias ou botao de cadastrar-se */
+
+.header-news h1 {
+    color: #f1f1f1;
+    font-size: 50px;
+    padding-top: 20px;
+    text-align: center;
+    user-select: none;
+}
+
+.header-news {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-news>div {
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    padding-top: 25px;
+    justify-content: space-between;
+}
+
+.header-news div button {
+    width: 230px;
+    height: 70px;
+    background-color: #3a090a;
+    border-radius: 4px;
+    border: 2px solid #3D0809;
+    cursor: pointer;
+    color: #f1f1f1;
+    transition: .3s;
+    font-size: 20px;
+}
+
+.header-logged {
+    transition: .3s all;
+}
+.header-logged > a {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    font-size: .8rem;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    transition: .3s all;
+}
+
+.header-logged:hover {
+    box-shadow: #3a090a 0 0 10px;
+    background: #3a090aa9;
+    padding: 10px;
+    border-radius: 40%;
+}
+
+.header-logged img {
+    object-fit: cover;
+    width: 75px;
+    height: 75px;
+    padding: 2px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+
+.header-news div button:hover {
+    transform: scale(1.1);
+    transition: .3s;
+    box-shadow: #00c3ff80 0 0 2px;
+}

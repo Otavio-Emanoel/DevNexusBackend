@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Otavio Emanoel">
+    <meta name="theme" content="#000">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="images/DevNexus.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/globals.css">
+    <title>DevNexus | Perfil de <%= user.name %>
+    </title>
+</head>
+
+<body>
+    <header class="perfil-header">
+        <h1>Perfil de <%= user.name %>
+        </h1>
+        <h2>Sou um desenvolvedor web junior</h2>
+        <a href="/user-edit">
+            <button id="edit-user-button">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+            </button>
+        </a>
+        <a id="sair-conta-link" href="/logout">
+            <button id="sair-conta-button">
+                Sair da conta
+            </button>
+        </a>
+        <a href="/">
+            <button id="voltar-inicio-button">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Inicio
+            </button>
+        </a>
+    </header>
+
+    <main class="perfil-app">
+        <div class="perfil-app-sobre">
+            <h3>Sobre mim</h3>
+            <p>
+                <%= user.about %>
+            </p>
+            <div class="perfil-habilidades">
+                <% if( user.skills && user.skills.length > 0 ) { %>
+                    <% user.skills.forEach(skill => { %>
+                        <% const skillLower = skill.toLowerCase() %>
+                        <% if(skillIcons[skillLower]) { %>
+                            <img
+                                src="/images/skills/<%= skillIcons[skillLower] %>"
+                                alt="<%= skill %>"
+                                title="<%= skill %>"
+                                class="skill-icon-perfil">
+                        <% } %>
+                    <% }) %>
+                <% } %>
+            </div>
+            
+        </div>
+        <div class="foto-de-perfil">
+            <img src="<%= user.photoUrl %>">
+        </div>
+        <div class="perfil-detalhes">
+            <h4>Nome:</h4>
+            <p id="perfil-nome-user">
+                <%= user.name %>
+            </p>
+            <h4>Data de Nascimento:</h4>
+
+            
+            <% 
+                const formatarData = (dataBanco) => {
+                    const data = new Date(dataBanco);
+                    const dia = String(data.getDate()).padStart(2, '0');
+                    const mes = String(data.getMonth() + 1).padStart(2, '0');
+                    const ano = data.getFullYear();
+
+                    return `${dia}/${mes}/${ano}`;
+                };
+            %>
+            
+
+            <p id="perfil-idade-user">
+                <%= formatarData(user.birthDate) %>
+            </p>
+            <h4>Email:</h4>
+            <p id="perfil-email-user">
+                <%= user.email %>
+            </p>
+            <h4>Area:</h4>
+            <p id="perfil-area-user">
+                <%= user.area %>
+            </p>
+            <h4>
+                <a id="github-link" href="<%= user.github %>">
+                    <i class="fa fa-github" aria-hidden="true"></i> GitHub
+                </a>
+            </h4>
+
+        </div>
+    </main>
+
+    <script>
+        document.querySelector('#sair-conta-link').addEventListener('click', function (e) {
+            if (!confirm('Tem certeza que deseja sair? ')) {
+                e.preventDefault()
+            }
+        })
+    </script>
+</body>
+
+</html>

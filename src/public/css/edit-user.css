@@ -1,0 +1,136 @@
+.app-edit-perfil {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+.app-edit-perfil section {
+    color: #f1f1f1;
+    background-color: #3D0809;
+    border-radius: 5%;
+    padding: 20px;
+    max-width: 800px;
+    width: 95%;
+    min-height: 800px;
+}
+
+.app-edit-perfil section>h1 {
+    text-align: center;
+    letter-spacing: 1px;
+    font: 400;
+    font-size: 1.8rem;
+}
+
+#editar-user {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 30px;
+    gap: 20px;
+}
+
+.edit-perfil-input-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 95%;
+}
+
+.edit-perfil-input-row label {
+    width: 100px;
+}
+
+.edit-perfil-input-row select {
+    width: 100%;
+    min-height: 30px;
+    color: #272727;
+
+}
+
+.edit-perfil-input-row input {
+    all: unset;
+    width: 100%;
+    min-height: 30px;
+    padding-left: 5px;
+    border-bottom: 1px solid #171717;
+    border-radius: 3px;
+    transition: .3s;
+    letter-spacing: 1px;
+}
+
+.edit-perfil-input-row input:focus {
+    border-bottom: 1px solid #ffffffb6;
+    color: #ffffff;
+    transition: .3s;
+}
+
+.edit-perfil-input-check {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    gap: 20px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.edit-perfil-input-check h3 {
+    width: 100%;
+    font-size: 1.2rem;
+    font: 300;
+    letter-spacing: 1px;
+}
+
+.edit-perfil-input-row:last-of-type {
+    justify-content: space-evenly;
+}
+
+#user-atualizar {
+    background-color: #0b1b47;
+
+}
+
+#edit-cancel {
+    background-color: #aa0104;
+}
+
+#edit-cancel,
+#user-atualizar {
+    cursor: pointer;
+    width: 40%;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    color: #f1f1f1;
+    letter-spacing: 1.5px;
+    transition: all .4s;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#edit-cancel:hover,
+#user-atualizar:hover {
+    opacity: .8;
+    transform: scale(1.02);
+
+}
+
+@media screen and (max-width: 500px) {
+    .app-edit-perfil {
+        position: relative;
+        top: 5vh;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .app-edit-perfil {
+        position: relative;
+        top: 10vh;
+    }
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Otavio Emanoel">
+    <meta name="theme" content="#000">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="images/DevNexus.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/globals.css">
+    <title>DevNexus | Editar perfil </title>
+</head>
+
+<body>
+    <!-- 
+        Deve conter na conta:
+            Nome #
+            Data de Nascimento X
+            Email #
+            Senha #
+            Area #
+            Link do Github #
+            Sobre a pessoa #
+            Foto de Perfil #
+            Genero #
+            Habilidades #
+    -->
+    <div class="app-edit-perfil">
+        <section>
+            <h1>Editar seu perfil</h1>
+            <% if(error) { %>
+                <div class="error">
+                    <%= error %>
+                </div>
+
+                <% } %>
+                    <% if(sucess) { %>
+                        <div class="sucess">
+                            <%= sucess %>
+                            <a href="/perfil">
+                                <button>
+                                    Voltar para o perfil
+                                </button>
+                            </a>
+                        </div>
+
+
+                        <% } %>
+                            <form action="/user-edit" method="post" id="editar-user">
+                                <div class="edit-perfil-input-row">
+                                    <label for="edit-user-nome">Nome:</label>
+                                    <input required name="name" type="text" value="<%= user.name %>" id="edit-user-nome" placeholder="Atualize seu nome">
+                                </div>
+                                <div class="edit-perfil-input-row">
+                                    <label for="edit-user-email">Email:</label>
+                                    <input required name="email" type="email" id="edit-user-email"
+                                        placeholder="Atualize seu email" value="<%= user.email %>">
+                                </div>
+                                <!-- <div class="edit-perfil-input-row">
+                                    <label for="edit-user-password">Senha atual:</label>
+                                    <input name="currentPassword" type="password" id="edit-user-password"
+                                        placeholder="Digite sua senha atual (Caso queira atualizar)">
+                                </div>
+                                <div class="edit-perfil-input-row">
+                                    <label for="edit-user-password">Senha nova:</label>
+                                    <input name="newPassword" type="password" id="edit-user-password"
+                                        placeholder="Atualize sua senha (Opcional)">
+                                </div> -->
+                                <div class="edit-perfil-input-row">
+                                    <label for="edit-user-github">Github:</label>
+                                    <input name="github" type="url" id="edit-user-github"
+                                        placeholder="Atualize o link do seu Github" value="<%= user.github %>">
+                                </div>
+                                <div class="edit-perfil-input-row">
+                                    <label for="edit-user-sobre">Sobre mim:</label>
+                                    <input name="about" type="text" value="<%= user.about || '' %>" id="edit-user-sobre" placeholder="Fale sobre você">
+                                </div>
+                                <div class="edit-perfil-input-row">
+                                    <label for="edit-user-foto">Foto de Perfil:</label>
+                                    <input name="photoUrl" type="url"
+                                        placeholder="Coloque o link da sua foto de perfil..." value="<%= user.photoUrl || '' %>" id="edit-user-foto">
+                                </div>
+                                <div class="edit-perfil-input-row">
+                                    <label for="edit-user-tipo">Area:</label>
+                                    <select name="area" id="edit-user-tipo" placeholder="Selecione" required>
+                                        <option value="Frontend" <%= user.area === 'frontend' ? 'selected' : '' %> >Front-end</option>
+                                        <option value="Backend" <%= user.area === 'backend' ? 'selected' : '' %> >Back-end</option>
+                                        <option value="FullStack" <%= user.area === 'fullstack' ? 'selected' : '' %> >FullStack</option>
+                                    </select>
+                                </div>
+                                <div class="edit-perfil-input-check">
+                                    <h3>Habilidades:</h3>
+                                        <% const skillOptions = [
+                                            'javascript',
+                                            'java',
+                                            'nodejs',
+                                            'mysql',
+                                            'typescript',
+                                            'react',
+                                            'php',
+                                            'python',
+                                            'gml',
+                                            'csharp',
+                                            'cpp',
+                                            'go',
+                                            'kotlin',
+                                            'ruby'
+                                        ] %>
+
+                                    <% skillOptions.forEach(skill => { %>
+                                        <label>
+                                            <input 
+                                                name="skills"  
+                                                type="checkbox" 
+                                                value="<%= skill %>" 
+                                                <%= user.skills && user.skills.includes(skill) ? 'checked' : '' %> >
+                                            <%= skill %>
+                                        </label> 
+                                    <% }) %>
+                            
+                                </div>
+                                <div class="edit-perfil-input-row">
+                                    <input type="submit" id="user-atualizar" value="Atualizar">
+                                    <a href="/perfil" id="edit-cancel">
+                                        Cancelar
+                                    </a>
+                                </div>
+                                <p>(Os campos em branco não serão alterados)</p>
+                            </form>
+                            <!-- // Botao para abrir o modal e deletar a conta  -->
+                            <button type='button' onclick="mostrarModalDelete()" class="btn-delete">
+                                Deletar conta
+                            </button>
+                            <!-- // Modal de confirmação  -->
+                            <div id="modalDeleteUser" class="modal">
+                                <div class="modal-content">
+                                    <h2>Confirmar exclusão</h2>
+                                    <p>Tem certeza que deseja deletar a sua conta? Esta ação não pode ser desfeita.</p>
+                                    <div class="modal-buttons">
+                                        <a href="/deleteUser" class="button-confirm-delete" >
+                                            <button>
+                                                Sim, deletar.
+                                            </button>
+                                            </a>
+                                        <button onclick="fecharModal()" class="button-cancel-delete">
+                                            Cancelar.
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+        </section>
+    </div>
+    <script>
+        function mostrarModalDelete() {
+            document.getElementById('modalDeleteUser').style.display = 'block';
+        }    
+        function fecharModal() {
+            document.getElementById('modalDeleteUser').style.display = 'none';
+        }
+        window.onclick = function (event) {
+            const modal = document.getElementById('modalDeleteUser');
+            if(event.target == modal) {
+                fecharModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

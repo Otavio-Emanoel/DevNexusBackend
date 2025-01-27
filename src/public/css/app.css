@@ -1,0 +1,187 @@
+.app {
+    background-color: #3D0809;
+    width: 95%;
+    max-width: 1200px;
+    display: flex;
+    height: auto;
+    min-height: 500px;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app::before {
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background-color: #3D0809;
+    top: -50px;
+    left: 0px;
+    border-radius: 100% 100% 0 0;
+}
+
+/* Cards */
+
+.card {
+    width: 95%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #00000018;
+    color: #fff;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    min-height: 300px;
+}
+
+/* 
+.card {
+    width: 95%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #00000018;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-height: 300px;
+} */
+
+.programmer {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.programmer:hover {
+    transform: scale(1.1);
+    transition: .3s;
+    border-radius: 5%;
+}
+
+.card-lenguages-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 400px;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card-habilidade {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-lenguages-logo * {
+    height: 60px;
+    transition: .3s;
+}
+
+.card-lenguages-logo *:hover {
+    transform: scale(1.1);
+    transition: .3s;
+}
+
+.card-conheca {
+    background-color: #0051ff;
+    border: #023094 2px solid;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    letter-spacing: 2pt;
+    transition: .3s;
+}
+
+.card-info {
+    font-size: 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-conheca:hover {
+    transform: scale(1.03);
+    transition: .3s;
+}
+
+@media screen and (width < 825px) {
+    .header-nav-logo img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .header-nav-links nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 20px;
+        font-size: 15px;
+    }
+
+    .card-lenguages-logo {
+        margin-top: 10px;
+        margin-bottom: 15px;
+        padding-top: 10px;
+    }
+
+    #footer__content {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+    }
+}
+
+@media screen and (width < 680px) {
+    .header-nav-links nav {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        row-gap: 20px;
+        align-items: center;
+    }
+}
+
+@media screen and (width < 600px) {
+    .header-news>div {
+        width: 400px;
+        padding-top: 25px;
+        justify-content: space-evenly;
+    }
+
+    .header-news div button {
+        width: 155px;
+        height: 60px;
+    }
+
+    .header-news>h1 {
+        font-size: 45px;
+    }
+    .header-app {
+        height: 600px;
+        
+    }
+}
+
+@media screen and (width < 460px) {
+    .header-news>h1 {
+        font-size: 35px;
+    }
+
+    #footer__content {
+        padding: 20px 20px !important;
+    }
+}
+
+@media screen and (width < 400px) {
+    * {
+        display: none;
+    }
+}

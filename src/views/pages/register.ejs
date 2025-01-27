@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Otavio Emanoel">
+    <meta name="theme" content="#000">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="images/DevNexus.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/globals.css">
+    <title>DevNexus | Cadastre-se</title>
+</head>
+
+<body>
+    <div class="app-register">
+        <img src="images/DevNexus.png">
+        <form id="register-form" action="/register" method="post" enctype="application/x-www-form-urlencoded">
+            <header class="register-header">Registre-se</header>
+            <div class="input-box">
+                <label>Nome Completo</label>
+                <input name="name" required type="text" placeholder="Digite seu nome">
+            </div>
+            <div class="input-box">
+                <label>Email</label>
+                <input name="email" required type="email" placeholder="Digite seu email">
+            </div>
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Senha</label>
+                    <input name="password" title="A senha deve possuir ao menos 6 caracteres" required type="password"
+                        placeholder="Crie uma senha">
+                </div>
+                <div class="input-box">
+                    <label>GitHub</label>
+                    <input name="github" type="url" placeholder="Coloque o link de seu GitHub">
+                </div>
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Area</label>
+                    <select name="area" name="tipo-dev" id="" placeholder="Selecione">
+                        <option value="Frontend">Front-end</option>
+                        <option value="Backend">Back-end</option>
+                        <option value="FullStack">FullStack</option>
+                    </select>
+
+                </div>
+                <div class="input-box">
+                    <label>Experiencia</label>
+                    <input name="about" type="text" placeholder="Fale um pouco sobre você">
+                </div>
+
+            </div>
+            <div class="gender-box">
+                <h3>Gênero</h3>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input type="radio" value="masculino" name="gender" id="check-male">
+                        <label for="check-male">Masculino</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" value="feminino" name="gender" id="check-female">
+                        <label for="check-female">Feminino</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" value="prefiro não dizer" name="gender" id="check-other">
+                        <label for="check-other">Prefiro não dizer</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Data de Nascimento</label>
+                <input name="birthDate" type="date" placeholder="Coloque sua data de nascimento">
+            </div>
+
+            <a href="/login" class="ja-possuo-conta">
+                Já possuo uma conta
+            </a>
+
+            <button type="submit" id="enviar-cadastro">Cadastrar-se</button>
+
+            <% if(typeof error=='undefined' ) { %>
+                <div class="error-message"
+                    style="color: red; background-color: #ffe6e6; padding: 10px; margin-bottom: 20px; border-radius: 4px;">
+                    <%= error %>
+                </div>
+
+                <% } %>
+
+                    <!-- 
+            nome;
+            email;
+            senha;
+            area;
+            experiencia;
+            github;
+            enviar
+            -->
+
+        </form>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

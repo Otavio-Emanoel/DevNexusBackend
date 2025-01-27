@@ -1,0 +1,26 @@
+@import url('./header.css');
+@import url('./app.css');
+@import url('./form.css');
+@import url('./perfil.css');
+@import url('./footer.css');
+@import url('./edit-user.css');
+@import url('./animate.css');
+@import url('./modal.css');
+@import url('./sobre-nos.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Mochiy Pop One", serif;
+}
+
+body {
+    background-color: #010101;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

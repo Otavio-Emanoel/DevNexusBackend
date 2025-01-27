@@ -1,0 +1,261 @@
+.app-register {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 100dvh;
+    align-items: center;
+}
+
+.app-register>img {
+    width: 500px;
+    height: 500px;
+    -webkit-user-drag: none;
+    filter: drop-shadow(0 0 50px #ff000071);
+    position: fixed;
+    top: 10px;
+    left: 0;
+    z-index: -1;
+}
+
+#register-form {
+    width: 95%;
+    max-width: 600px;
+    min-height: 700px;
+    padding: 20px;
+    background-color: #3D0809;
+    border-radius: 5%;
+    border: 1px solid #250404;
+    box-shadow: #ff000071 0 0 5px;
+    color: #f1f1f1;
+}
+
+.register-header {
+    font-size: 1.5rem;
+    color: #fcfcfc;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.input-box input {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    border: 1px solid #fff;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 4px;
+    border-radius: 6px;
+    padding: 0 15px;
+}
+
+.input-box select {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    border: 1px solid #fff;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 4px;
+    border-radius: 6px;
+    padding: 0 15px;
+
+}
+
+.column {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    width: 100%;
+}
+
+#register-form :where(.gender-option, .gender) {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.gender-box {
+    margin-top: 10px;
+}
+
+.gender-box h3 {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    font-weight: 400;
+
+}
+
+.gender {
+    column-gap: 5px;
+    font-size: 1rem;
+}
+
+#register-form :where(.gender input, .gender label) {
+    cursor: pointer;
+}
+
+#enviar-cadastro {
+    height: 55px;
+    width: 100%;
+    background-color: #000000bd;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 30px;
+    cursor: pointer;
+    border: #250404 solid 1px;
+    border-radius: 6px;
+    transition: .3s;
+}
+
+#enviar-cadastro:hover {
+    border-radius: 12px;
+    background-color: #000;
+    transform: scale(1.02);
+    transition: .3s;
+}
+
+/* Responsividade */
+
+@media screen and (max-width: 500px) {
+    #register-form {
+        position: relative;
+        top: 100px;
+    }
+
+    .column {
+        flex-wrap: wrap;
+    }
+
+    .gender-option {
+        flex-wrap: wrap;
+    }
+}
+
+/* LOGIN */
+
+.app-login {
+    width: 100%;
+    max-width: 1200px;
+    height: 100dvh;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -50px;
+    gap: 20px;
+}
+
+.app-login>img {
+    width: 400px;
+    height: 400px;
+    -webkit-user-drag: none;
+    filter: drop-shadow(0 0 50px #ff000071);
+}
+
+.Login-header {
+    font-size: 1.5rem;
+    color: #fcfcfc;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#login-form {
+    width: 95%;
+    max-width: 700px;
+    background-color: #3D0809;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.column-remember {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.column-remember>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+#lembrar-login {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+}
+
+#forget-password, .create-account-button, .ja-possuo-conta {
+    color: #a0a0a0;
+
+}
+
+#enviar-login {
+    height: 55px;
+    width: 100%;
+    background-color: #000000bd;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 30px;
+    cursor: pointer;
+    border: #250404 solid 1px;
+    border-radius: 6px;
+    transition: .3s;
+}
+
+#enviar-login:hover {
+    border-radius: 12px;
+    background-color: #000;
+    transform: scale(1.02);
+    transition: .3s;
+}
+
+/* erro e sucesso */
+
+.error {
+    text-align: center;
+    color: #f00;
+}
+
+.sucess {
+    text-align: center
+}
+
+.sucess a button {
+    height: 30px;
+    width: 150px;
+    border-radius: 10px;
+    border: 2px solid #74ff23;
+    color: #f1f1f1;
+    background-color: #74ff2369;
+    transition: .3s;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.sucess a button {
+    background-color: #74ff23;
+    color: #000;
+    transition: .3s;
+}

@@ -1,0 +1,192 @@
+.perfil-header {
+    color: #fff;
+    text-align: center;
+}
+
+.perfil-header h1 {
+    font-size: 1.8rem;
+}
+
+.perfil-header h2 {
+    font-size: 1.4rem;
+}
+
+.perfil-app {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1200px;
+    color: #fff;
+}
+
+.perfil-app-sobre {
+    width: 300px;
+    transition: .3s;
+}
+
+.perfil-app-sobre:hover {
+    transform: scale(1.2);
+    background-color: #ffffff0e;
+    padding: 10px;
+    border-radius: 10%;
+    transition: .3s;
+}
+
+.perfil-app-sobre h3 {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.perfil-app-sobre p {
+    padding: 10px;
+    font-size: 1rem;
+    text-align: start;
+}
+
+.foto-de-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 315px;
+    height: 315px;
+    border: #ff2323 4px solid;
+    border-radius: 50%;
+    transition: .3s;
+    box-shadow: 0 0 2px #ff0000c2,
+        0 0 4px #ff00006c,
+        0 0 6px #ff000038;
+}
+
+
+.foto-de-perfil img {
+    width: 300px;
+    height: 300px;
+    -webkit-user-drag: none;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.foto-de-perfil img:hover {
+    border-radius: 20px;
+    transform: scale(1.2);
+    transition: .3s;
+    border: #ff2323 2px solid;
+}
+
+.perfil-detalhes {
+    transition: .3s;
+    width: 300px;
+}
+
+.perfil-detalhes:hover {
+    transform: scale(1.2);
+    background-color: #ffffff0e;
+    padding: 10px;
+    border-radius: 10%;
+    transition: .3s;
+}
+
+.perfil-detalhes h4 {
+    font-size: 1.2rem;
+    text-align: start;
+}
+
+.perfil-detalhes p {
+    font-size: 1rem;
+    text-align: start;
+}
+
+#github-link {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #6b006b;
+}
+
+#github-link .fa-github {
+    color: #f0f0f0;
+}
+
+#sair-conta-button {
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid #ff2323;
+    color: #f1f1f1;
+    background-color: #ff232369;
+    transition: .3s;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#sair-conta-button:hover {
+    background-color: #ff2323;
+    color: #000;
+    transition: .3s;
+}
+
+#edit-user-button {
+    height: 30px;
+    width: 150px;
+    border-radius: 10px;
+    border: 2px solid #2395ff;
+    color: #f1f1f1;
+    background-color: #2395ff69;
+    transition: .3s;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#edit-user-button:hover {
+    background-color: #2395ff;
+    color: #000;
+    transition: .3s;
+}
+
+#voltar-inicio-button {
+    height: 30px;
+    width: 150px;
+    border-radius: 10px;
+    border: 2px solid #74ff23;
+    color: #f1f1f1;
+    background-color: #74ff2369;
+    transition: .3s;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#voltar-inicio-button > .fa {
+    font-size: 1rem;
+}
+
+#voltar-inicio-button:hover {
+    background-color: #74ff23;
+    color: #000;
+    transition: .3s;
+}
+
+.perfil-habilidades {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.skill-icon-perfil {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .perfil-app {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+}
