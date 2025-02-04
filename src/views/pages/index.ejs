@@ -54,9 +54,40 @@
                     <a href="/sobre" class="link-page">
                         Sobre
                     </a>
-                    <a href="" class="link-page">
+                    <a onclick="abrirFiltro()" class="link-page">
                         Filtrar
                     </a>
+                        <div class="filter_back">
+                            <div class="menuFiltro">
+                                <div class="filter_header">
+                                    <h2>Buscar por filtro</h2>
+                                    <span onclick="fecharFiltro()" class="fa fa-times"></span>
+                                </div>
+                                <div class="filter_main">
+                                    <form action="/" method="get">
+                                        <label>
+                                            Área: 
+                                            <select name="area" name="tipo-dev" id="filter_by_type" placeholder="Selecione">
+                                                <option <%= !filters.area ? 'selected' : '' %> value="">Selecione uma área</option>
+                                                <option <%= filters.area === 'Frontend' ? 'selected' : '' %> value="Frontend">Front-end</option>
+                                                <option <%= filters.area === 'Backend' ? 'selected' : '' %> value="Backend">Back-end</option>
+                                                <option <%= filters.area === 'FullStack' ? 'selected' : '' %> value="FullStack">FullStack</option>
+                                            </select>
+                                        </label>
+                                        <label>
+                                            Ordenar: 
+                                            <select name="sortBy" id="sortBy">
+                                                <option <%= !filters.sortBy ? 'selected' : '' %> value="">Ordenar por</option>
+                                                <option <%= filters.sortBy === 'newest' ? 'selected' : '' %> value="newest">Mais recente primeiro</option>
+                                                <option <%= filters.sortBy === 'oldest' ? 'selected' : '' %> value="oldest">Mais antigo primeiro</option>
+                                            </select>
+                                        </label>
+                                        <button id="buscarFilter" type="submit">Buscar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                     <a id="search-button" href="">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </a>
@@ -97,12 +128,12 @@
 
             <% } else { %>
                     <div>
-                        <a href="/register">
+                        <a onclick="showLoader()" href="/register">
                             <button id="register-button">
                                 Cadastre-se
                             </button>
                         </a>
-                        <a href="/sobre">
+                        <a onclick="showLoader()" href="/sobre">
                             <button id="knowmore-button">
                                 Saiba Mais
                             </button>
@@ -140,10 +171,12 @@
                         %>
                         <%= calcularIdade(user.birthDate) %> anos
                     </p>
-                    <p style="font-size: .9rem;"><a style="text-decoration: none; color: #9fdcff;"
+                    <p style="font-size: .9rem;">
+                        <a style="text-decoration: none; color: #9fdcff;"
                             href="<%= user.github %>">
                             <%= user.github %>
-                        </a> </p>
+                        </a> 
+                    </p>
                 </div>
                 <div class="card-habilidade">
                     <div class="card-lenguages-logo">
@@ -158,7 +191,9 @@
                             <% }) %>
                         <% } %>
                     </div>
-                    <button class="card-conheca">Conheça</button>
+                    <a href="/profile/<%= user._id %>" target="_blank" >
+                        <button onclick="abrirPerfil('<%= user._id %>')" class="card-conheca">Conheça</button>
+                    </a>
                 </div>
             </div>
             <% }); %>
@@ -222,6 +257,17 @@
         const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${meuEmail}&su=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`
 
         window.open(gmailUrl, '_blank')
+    }
+    function abrirPerfil(userId) { 
+        console.log('ID do usuario: ', userId);
+        window.location.href = `/profile/${userId}` 
+    }
+
+    function abrirFiltro() {
+        document.querySelector('.filter_back').style.display = 'flex'
+    }
+    function fecharFiltro() {
+        document.querySelector('.filter_back').style.display = 'none'
     }
 </script>
 </body>

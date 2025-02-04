@@ -45,19 +45,30 @@ router.get('/', async (req, res) => {
             }
         }
 
-        // Simula uma requisição
-        const mockRes = {
-            json: (data) => data,
-            status: () => mockRes
-        }
-
-        const users = await UserController.listUser(req, mockRes)
+        const users = await UserController.listUser(req)
         console.log("Users: ", users) // para debug
-        res.render('pages/index', { users: users || [], skillIcons: skillIcons, loggedUser: loggedUser })
+        res.render('pages/index', { 
+            users: users || [], 
+            skillIcons: skillIcons, 
+            loggedUser: loggedUser, 
+            filters: {
+                area: req.query.area || '',
+                sortBy: req.query.sortBy || ''
+            }
+        })
 
     } catch (error) {
         console.log('Error: ', error)
-        res.render('pages/index', { users: [], skillIcons: skillIcons, loggedUser: null })
+        res.render('pages/index', { 
+            users: [], 
+            skillIcons: skillIcons, 
+            loggedUser: null,
+            filters: {
+                area: '',
+                sortBy: ''
+            },
+            error: 'Erro ao carregar usuarios'
+        })
     }
 })
 
@@ -142,14 +153,10 @@ router.get('/perfil', authMiddleware, async (req, res) => {
     }
 })
 
-// pagina do usuario
-router.get('/user-page/:id', async (req, res) => {
-    try {
-        const user = await UserController.getUser(req, res)
-        res.render('pages/user-page', { user: user.body })
-    } catch (error) {
-        res.redirect('/')
-    }
+// pagina do usuario publico
+router.get('/profile/:id', (req, res) => {
+    console.log('Rota acessada com ID:', req.params.id)
+    UserController.viewProfile(req, res)
 })
 
 // Pagina de edição de usuario

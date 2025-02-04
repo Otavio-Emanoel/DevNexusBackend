@@ -1,0 +1,118 @@
+.filter_back {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100dvh;
+    background-color: #0000009d;
+    z-index: 1000;
+}
+
+.menuFiltro {
+    width: 60%;
+    max-width: 400px;
+    background-color: #121212;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 25px;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.filter_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter_header>h2 {
+    font-size: 1.2rem;
+}
+
+.filter_header>span {
+    color: #ff0000f0;
+    cursor: pointer;
+}
+
+.filter_header>span:hover {
+    transition: .3s all;
+    transform: scale(1.2);
+}
+
+.filter_main form {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 10px;
+    width: 100%;
+}
+
+.filter_main form label {
+    font-size: 1.15rem;
+    font-weight: 100;
+    text-align: end;
+}
+
+.filter_main form label input[type=number] {
+    width: 300px;
+    max-width: 75%;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    background-color: #f2f2f2;
+}
+
+.filter_main input::-webkit-outer-spin-button,
+.filter_main input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.filter_main form label input[type=number]::placeholder {
+    color: #0000009d;
+    font-size: .8rem;
+    text-align: center;
+}
+
+.filter_main form label input[type=number]:hover,
+.filter_main form label input[type=number]:checked {
+    color: #010101;
+    border: 1px solid #220000;
+    transform: all .3s;
+}
+
+.filter_main form label input[type=number]:hover::placeholder,
+.filter_main form label input[type=number]:checked::placeholder {
+    transform: all .3s;
+}
+
+.filter_main form label select {
+    width: 300px;
+    max-width: 75%;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    background-color: #f2f2f2;
+    color: #0000009d;
+    text-align: center;
+}
+
+#sortBy {
+    width: 300px;
+    max-width: 65%;
+}
+
+#buscarFilter {
+    width: 200px;
+    background-color: #f9f9f9;
+    color: #010101;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+}

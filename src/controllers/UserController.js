@@ -2,6 +2,7 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const skillIcons = require('../utils/skillIcons')
+const SearchFilter = require('../config/SearchFilter')
 
 class UserController {
     // Registro de usuario
@@ -40,7 +41,8 @@ class UserController {
             // Verificar se o usuario existe
             const existingUser = await User.findOne({ email })
             if (existingUser) {
-                return res.status(400).json({ error: 'Usuario já cadastrado' })
+                // res.status(400).json({ error: 'Usuario já cadastrado' })
+                return res.render('pages/register', { error: 'Usuario já cadastrado' })
             }
 
             // Hash da senha
@@ -253,50 +255,78 @@ class UserController {
 
     listUser = async (req, res) => {
         try {
-            const { area, skills, search } = req.query
-            let query = {}
-
-            // Filtro por área
-            if (area) {
-                query.area = area
-            }
-
-            // Filtro por skills
-            if (skills) {
-                query.skills = { $all: skills.split(',') }
-            }
-
-            // Busca por nome ou email
-            if (search) {
-                query.$or = [
-                    {
-                        nome: {
-                            $regex: search,
-                            $options: 'i'
-                        }
-                    },
-                    {
-                        email: {
-                            $regex: search,
-                            $options: 'i'
-                        }
-                    }
-                ]
-            }
-
-            const users = await User.find(query)
-                .select('-password')
-                .sort({ createdAt: -1 })
-            res.json(users)
-
-            return res.status(200).json(users)
+            const users = await SearchFilter.filterUsers(req.query)
+            
+            return users
+            // return res.render('pages/index', {
+            //     users: users,
+            //     filters: {
+            //         idade: req.query.idade || '',
+            //         area: req.query.area || '',
+            //         sortBy: req.query.sortBy || 'newest'
+            //     }
+            // })
         } catch (error) {
-            return res.status(400).json({
-                error: 'Erro ao listar usuários',
-                details: error.message
-            })
+            console.error('Erro ao listar usuários: ', error)
+            return []
+            // return res.render('pages/index', { 
+            //     users: [],
+            //     filters: {
+            //         idade: '',
+            //         area: '',
+            //         sortBy: ''
+            //     },
+            //     error: 'Erro ao carregar usuários'
+            // })
         }
     }
+
+    // listUser = async (req, res) => {
+    //     try {
+    //         const { area, skills, search } = req.query
+    //         let query = {}
+
+    //         // Filtro por área
+    //         if (area) {
+    //             query.area = area
+    //         }
+
+    //         // Filtro por skills
+    //         if (skills) {
+    //             query.skills = { $all: skills.split(',') }
+    //         }
+
+    //         // Busca por nome ou email
+    //         if (search) {
+    //             query.$or = [
+    //                 {
+    //                     nome: {
+    //                         $regex: search,
+    //                         $options: 'i'
+    //                     }
+    //                 },
+    //                 {
+    //                     email: {
+    //                         $regex: search,
+    //                         $options: 'i'
+    //                     }
+    //                 }
+    //             ]
+    //         }
+
+    //         const users = await User.find(query)
+    //             .select('-password')
+    //             .sort({ createdAt: -1 })
+    //         res.json(users)
+
+    //         return res.status(200).json(users)
+    //     } catch (error) {
+    //         return res.status(400).json({
+    //             error: 'Erro ao listar usuários',
+    //             details: error.message
+    //         })
+    //     }
+    // }
 
     // Atualizar skills
 
@@ -422,7 +452,7 @@ class UserController {
     // Metodo para editar o perfil
     updateProfile = async (req, res) => {
         try {
-            const { 
+            const {
                 name,
                 email,
                 github,
@@ -433,7 +463,11 @@ class UserController {
                 currentPassword,
                 newPassword
             } = req.body
+            const userId = req.user.id
             const user = await User.findById(req.userId)
+
+            console.log('Dados recebidos: ', req.body)
+            console.log('Id do usuario: ', userId)
 
             if (!user) {
                 return res.render('pages/user-edit', {
@@ -442,13 +476,13 @@ class UserController {
                     sucess: null
                 })
             }
-            
+
             // Verifica se o email ja existe (se foi alterado)
-            if (email !== user.email) {
-                const existingUser = await User.findById({ email })
-                if (existingUser) {
+            if (email && email !== user.email) {
+                const existingUser = await User.findById({ email: email })
+                if (existingUser && existingUser._id.toString() !== userId) {
                     return res.render('pages/user-edit', {
-                        user: { ...req.body, birthDate },
+                        user: { ...req.body },
                         error: 'Este email já está em uso',
                         sucess: null
                     })
@@ -456,7 +490,7 @@ class UserController {
             }
             // Verifica se forneceu uma senha nova
             if (currentPassword && newPassword) {
-                const isValidPassword = await bvrypt.compare(currentPassword, user.password)
+                const isValidPassword = await bcrypt.compare(currentPassword, user.password)
                 if (!isValidPassword) {
                     return res.render('pages/user-edit', {
                         user: {
@@ -502,7 +536,26 @@ class UserController {
         }
     }
 
-    
+    viewProfile = async (req, res) => {
+        try {
+            const userId = req.params.id
+            console.log("Buscando usuário com ID:", userId)
+
+            const user = await User.findById(userId)
+            console.log("Usuário encontrado: ", user)
+
+            if (!user) {
+                console.log("Usuário não encontrado")
+                return res.status(404).redirect('/not-found-user')
+            }
+            res.render('pages/public-profile', { user, skillIcons: skillIcons })
+
+        } catch (error) {
+            console.error("Erro ao carregar o perfil: ", error)
+            res.status(500).redirect('/')
+        }
+    }
+
 }
 
 module.exports = new UserController()

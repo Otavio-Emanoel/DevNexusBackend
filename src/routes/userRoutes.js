@@ -27,6 +27,10 @@ router.get('/logout', (req, res) => {
     res.redirect('/login')
 })
 
+// Rota de usuario nao encontrado
+router.get('/not-found-user', (req, res) => {
+    res.render('pages/erro-user', {error: 'Usuario não encontrado'})
+})
 
 // Rota para mostrar o formulario
 router.get('/user-edit', authMiddleware, UserController.showEditForm)

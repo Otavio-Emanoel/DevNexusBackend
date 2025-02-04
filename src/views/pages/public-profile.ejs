@@ -7,8 +7,8 @@
     <meta name="author" content="Otavio Emanoel">
     <meta name="theme" content="#000">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="images/DevNexus.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/globals.css">
+    <link rel="shortcut icon" href="/images/DevNexus.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/globals.css">
     <title>DevNexus | Perfil de <%= user.name %>
     </title>
 </head>
@@ -18,16 +18,6 @@
         <h1>Perfil de <%= user.name %>
         </h1>
         <h2>Sou um dev <%= user.area %></h2>
-        <a href="/user-edit">
-            <button id="edit-user-button">
-                <i class="fa fa-pencil" aria-hidden="true"></i> Editar
-            </button>
-        </a>
-        <a id="sair-conta-link" href="/logout">
-            <button id="sair-conta-button">
-                Sair da conta
-            </button>
-        </a>
         <a href="/">
             <button id="voltar-inicio-button">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Inicio
@@ -35,6 +25,7 @@
         </a>
     </header>
 
+    
     <main class="perfil-app">
         <div class="perfil-app-sobre">
             <h3>Sobre mim</h3>
@@ -58,7 +49,7 @@
             
         </div>
         <div class="foto-de-perfil">
-            <img src="<%= user.photoUrl %>" onerror="this.src = 'images/DevNexus.png'">
+            <img src="<%= user.photoUrl %>" onerror="this.src = '/images/DevNexus.png'">
         </div>
         <div class="perfil-detalhes">
             <h4>Nome:</h4>
@@ -71,7 +62,7 @@
             <% 
                 const formatarData = (dataBanco) => {
                     const data = new Date(dataBanco);
-                    const dia = String(data.getDate()+1).padStart(2, '0');
+                    const dia = String(data.getDate() +1).padStart(2, '0');
                     const mes = String(data.getMonth() + 1).padStart(2, '0');
                     const ano = data.getFullYear();
 
@@ -101,11 +92,7 @@
     </main>
 
     <script>
-        document.querySelector('#sair-conta-link').addEventListener('click', function (e) {
-            if (!confirm('Tem certeza que deseja sair? ')) {
-                e.preventDefault()
-            }
-        })
+        
     </script>
 </body>
 

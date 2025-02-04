@@ -72,7 +72,7 @@
             </div>
             <div class="input-box">
                 <label>Data de Nascimento</label>
-                <input name="birthDate" type="date" placeholder="Coloque sua data de nascimento">
+                <input name="birthDate" type="date" min="2013-01-01" max="1925-01-01" placeholder="Coloque sua data de nascimento">
             </div>
 
             <a href="/login" class="ja-possuo-conta">
@@ -81,9 +81,9 @@
 
             <button type="submit" id="enviar-cadastro">Cadastrar-se</button>
 
-            <% if(typeof error=='undefined' ) { %>
+            <% if(typeof error!=='undefined'  ) { %>
                 <div class="error-message"
-                    style="color: red; background-color: #ffe6e6; padding: 10px; margin-bottom: 20px; border-radius: 4px;">
+                    style="color: red; background-color: #ffe6e6; text-align: center; margin-bottom: 20px; margin-top: 5px; border-radius: 4px;">
                     <%= error %>
                 </div>
 
