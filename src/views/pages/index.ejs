@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="filter_main">
                                     <form action="/" method="get">
-                                        <label>
+                                         <label>
                                             Área: 
                                             <select name="area" name="tipo-dev" id="filter_by_type" placeholder="Selecione">
                                                 <option <%= !filters.area ? 'selected' : '' %> value="">Selecione uma área</option>
@@ -88,7 +88,23 @@
                             </div>
                         </div>
 
-                    <a id="search-button" href="">
+                        <div class="search-container">
+                            <form action="/search" method="get" id="search-form">
+                                <div class="search-container-header">
+                                    <h2>Pesquise usuario por nome</h2>
+                                    <span onclick="fecharPesquisa()" class="fa fa-times"></span>
+                                </div>
+                                <div class="search-container-main">
+                                    <input type="text" name="search" id="searchInput" placeholder="Buscar por nome..." value="<%= filters.search || '' %>">
+                                    <button type="submit" class="search-button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                        
+                    <a id="search-button" onclick="abrirPesquisa()">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </a>
 
@@ -247,29 +263,6 @@
         </div>
     </footer>
 
-<script>
-    function enviarEmail() {
-        const sugestao = document.getElementById('sugestoes_email').value
-        const meuEmail = 'dev.nexus.developer@gmail.com'
-        const assunto = `Sugestão para o site DevNexus`
-        const corpo = `Sugestão para o site DevNexus: ${sugestao}`
-
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${meuEmail}&su=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`
-
-        window.open(gmailUrl, '_blank')
-    }
-    function abrirPerfil(userId) { 
-        console.log('ID do usuario: ', userId);
-        window.location.href = `/profile/${userId}` 
-    }
-
-    function abrirFiltro() {
-        document.querySelector('.filter_back').style.display = 'flex'
-    }
-    function fecharFiltro() {
-        document.querySelector('.filter_back').style.display = 'none'
-    }
-</script>
 </body>
 
 </html>

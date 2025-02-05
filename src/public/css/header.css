@@ -91,6 +91,7 @@
 #search-button:hover * {
     transform: scale(1.4);
     transition: 0.3s;
+    cursor: pointer;
 }
 
 /* animação */

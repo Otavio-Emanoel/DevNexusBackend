@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken')
 const UserController = require('../controllers/UserController')
 const authMiddleware = require('../middlewares/auth')
 const User = require('../models/User')
+require('dotenv').config()
+
 
 
 // Mapeamento de skills para seus respectivos icones
@@ -104,6 +106,47 @@ router.get('/sobre', async (req, res) => {
     } catch (error) {
         console.log('Error: ', error)
         res.render('pages/sobre-nos', { users: [], loggedUser: null })
+    }
+})
+
+// Rota da pesquisa
+router.get('/search', async (req, res) => {
+    try {
+        const token = req.cookies.token
+        let loggedUser = null
+
+        if(token) {
+            try {
+                const decoded = jwt.verify(token, process.env.JWT_SECRET)
+                loggedUser = await User.findById(decoded.id)
+            } catch (error) {
+                console.log('Erro ao verificar o token: ', error)
+            }
+        }
+        const users = await UserController.searchUsers(req)
+        res.render('pages/index', {
+            users: users || [],
+            skillIcons: skillIcons,
+            loggedUser: loggedUser,
+            filters: {
+                search: req.query.search || '',
+                area: '',
+                sortBy: ''
+            }
+        })
+    } catch (error) {
+        console.log('Erro: ', error)
+        res.render('pages/index', {
+            users: [],
+            skillIcons: skillIcons,
+            loggedUser: null,
+            filters: {
+                search: '',
+                area: '',
+                sortBy: ''
+            },
+            error: 'Erro ao pesquisar usuários'
+        })
     }
 })
 

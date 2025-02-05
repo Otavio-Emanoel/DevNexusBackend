@@ -328,6 +328,19 @@ class UserController {
     //     }
     // }
 
+    // Pesquisa por nome
+
+    searchUsers = async (req, res) => {
+        try {
+            const searchTerm = req.query.search
+            const users = await SearchFilter.searchByName(searchTerm)
+            return users
+        } catch (error) {
+            console.error('Erro ao pesquisar usuario: ', error)
+            return []
+        }
+    }
+    
     // Atualizar skills
 
     async updateSkills(req, res) {

@@ -12,17 +12,17 @@ class SearchFilter {
 
             if (query.sortBy && query.sortBy !== '') {
                 switch (query.sortBy) {
-                    case 'newest': 
-                        sortOption = { createdAt: -1};
+                    case 'newest':
+                        sortOption = { createdAt: -1 };
                         break;
-                        case 'oldest': 
-                        sortOption = { createdAt: 1};
+                    case 'oldest':
+                        sortOption = { createdAt: 1 };
                         break;
                     default:
-                        sortOption = { createdAt: -1};        
-                    }
-                } else {
-                sortOption = { createdAt: -1};
+                        sortOption = { createdAt: -1 };
+                }
+            } else {
+                sortOption = { createdAt: -1 };
             }
             console.log('Filtros aplicados: ', filterQuery)
             console.log('Ordenação: ', sortOption)
@@ -36,6 +36,25 @@ class SearchFilter {
             throw error
         }
     }
+
+    searchByName = async (searchTerm) => {
+        try {
+            if (!searchTerm || searchTerm.trim() === '') {
+                return []
+            }
+
+            const users = await User.find({
+                name: { $regex: new RegExp(searchTerm.trim(), 'i') }
+            })
+                .select('-password')
+                .sort({ createdAt: -1})
+            return users
+        } catch (error) {
+            console.error('Erro na busca por nome:', error)
+            throw error
+        }
+    }
+
 }
 
 module.exports = new SearchFilter()

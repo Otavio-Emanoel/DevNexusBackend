@@ -1,0 +1,83 @@
+.search-container {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100dvh;
+    background-color: #0000009d;
+    z-index: 1000;
+
+    & #search-form {
+        width: 60%;
+        max-width: 400px;
+        background-color: #121212;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 25px;
+        padding: 30px;
+        border-radius: 8px;
+
+        & .search-container-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            & h2 {
+                font-size: 1rem;
+            }
+
+            & span {
+                cursor: pointer;
+                color: #f10101;
+
+                &:hover {
+                    transition: all .3s;
+                    transform: scale(1.2);
+                }
+            }
+        }
+        
+        .search-container-main {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            
+            & #searchInput {
+                width: 90%;
+                height: 40px; 
+                border-radius: 6px 0 0 6px;
+                border: none;
+                padding-left: 10px;
+
+                &:active, &:hover, &:focus {
+                    transform: none;
+                    box-shadow: none;
+                    border: 0 none;
+                    outline: 0;
+                    background-color: #dadada;
+                    transition: all .2s;
+                }
+            }
+            
+            & .search-button {
+                border-radius: 0 6px 6px 0;
+                width: 10%;
+                height: 40px;
+                color: #fff;
+                cursor: pointer;
+
+                &:hover {
+                    box-shadow: none;
+                    transform: none;
+                    opacity: .7;
+                }
+            }
+        }
+    }
+}
